@@ -1,7 +1,22 @@
 import { Elysia } from "elysia";
+import { app } from "./modules/app";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+import cors from "@elysiajs/cors";
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+
+const server = new Elysia()
+.get("/", () => "Hello Elysia")
+.use(
+  cors({
+    origin: [
+      "http://localhost:3001/",
+      "127.0.0.1:3001",
+      "https://honesto-rho.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+)
+.use(app)
+
+export default server
