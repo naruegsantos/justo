@@ -9,7 +9,7 @@ const server = new Elysia()
 .use(
   cors({
     origin: [
-      "http://localhost:3001/",
+      "http://localhost:3001",
       "127.0.0.1:3001",
       "https://honesto-rho.vercel.app",
     ],
