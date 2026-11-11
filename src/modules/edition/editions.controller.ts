@@ -6,6 +6,7 @@ export const editionsController = new Elysia({
     prefix: "/editions",
 }) 
 .get('/', () => editionsService.getEditions())
+.get('/create', () => '/create')
 // .get('/:id', ({params}) => editionsService.getOneTodo(+params.id))
 // .put("/:id", ({ params, body }) => editionsService.updateTodo(+params.id, body),
 //     {

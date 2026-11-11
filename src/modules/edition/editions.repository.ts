@@ -1,5 +1,6 @@
 import { db } from '../../database/client' 
 import { editions } from '../../database/schema'
+import { InferInsertModel } from 'drizzle-orm'
 import { asc, desc, eq } from 'drizzle-orm'
 
 export const editionsRepository = {
@@ -11,8 +12,13 @@ export const editionsRepository = {
       .orderBy(editions.updatedAt)
     } catch (error) {
       console.log(error);
-      
     }
+  },
+
+  async create(data:IEditionInsert) {
+    return db
+    .insert(editions)
+    .values(data)
   },
 
   // async findOne(id:number) {
@@ -29,11 +35,7 @@ export const editionsRepository = {
   //   .where(eq(editions.id, id))
   // },
 
-  // async create(data:any) {
-  //   return db
-  //   .insert(editions)
-  //   .values(data)
-  // },
+  
 
   // async delete(id:number) {
   //   return db
@@ -41,3 +43,5 @@ export const editionsRepository = {
   //   .where(eq(editions.id, id))
   // }
 };
+
+export type IEditionInsert = InferInsertModel<typeof editions>

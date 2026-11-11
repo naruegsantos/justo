@@ -24,6 +24,7 @@ export const editions = pgTable("editions", {
     .primaryKey()
     .generatedByDefaultAsIdentity(),
   name: text("name").notNull(),
+  number: text("number").notNull(),
   orgId: bigint("org_id", { mode: "number" })
     .notNull()
     .default(0),
@@ -36,10 +37,7 @@ export const editions = pgTable("editions", {
     .notNull()
     .defaultNow(),
   endDate: timestamp("end_date", { withTimezone: true }).notNull(),
-  totalAmount: smallint("total_amount").notNull(),
-  individualAmount: smallint("individual_amount"),
-  activityAmount: smallint("activity_amount"),
-  number: text("number").notNull(),
+  amount: smallint("amount").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
